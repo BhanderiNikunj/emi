@@ -1,4 +1,3 @@
-import 'package:emi/Calcuation.dart';
 import 'package:flutter/material.dart';
 
 class EMI extends StatefulWidget {
@@ -122,6 +121,7 @@ class _EMIState extends State<EMI> {
               height: 100,
               width: double.infinity,
               color: Colors.orange,
+              alignment: Alignment.center,
               child: Text("$total"),
             )
           ],
