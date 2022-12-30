@@ -1,3 +1,4 @@
+import 'package:emi/OutPut.dart';
 import 'package:flutter/material.dart';
 
 class EMI extends StatefulWidget {
@@ -12,6 +13,9 @@ class _EMIState extends State<EMI> {
   double rate = 0;
   double time = 0;
   double total = 0;
+  List amou=[];
+  List rat=[];
+  List tim=[];
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +29,7 @@ class _EMIState extends State<EMI> {
             Padding(
               padding: const EdgeInsets.only(left: 20, top: 20),
               child: Text(
-                "$amount",
+                "Amount  :  ${amount.toInt()}",
                 style: TextStyle(color: Colors.white),
               ),
             ),
@@ -33,8 +37,8 @@ class _EMIState extends State<EMI> {
               value: amount,
               max: 1000000,
               divisions: 100,
-              activeColor: Colors.purple,
-              inactiveColor: Colors.purple.shade900,
+              activeColor: Colors.orange.shade900,
+              inactiveColor: Colors.orange.shade300,
               onChanged: (value) {
                 setState(() {
                   amount = value;
@@ -45,7 +49,7 @@ class _EMIState extends State<EMI> {
             Padding(
               padding: const EdgeInsets.only(left: 20, top: 20),
               child: Text(
-                "$rate",
+                "Rate  :  ${rate.toInt()}",
                 style: TextStyle(color: Colors.white),
               ),
             ),
@@ -53,8 +57,8 @@ class _EMIState extends State<EMI> {
               value: rate,
               max: 10,
               divisions: 10,
-              activeColor: Colors.purple,
-              inactiveColor: Colors.purple.shade900,
+              activeColor: Colors.orange.shade900,
+              inactiveColor: Colors.orange.shade300,
               onChanged: (value) {
                 setState(() {
                   rate = value;
@@ -65,7 +69,7 @@ class _EMIState extends State<EMI> {
             Padding(
               padding: const EdgeInsets.only(left: 20, top: 20),
               child: Text(
-                "$time",
+                "Time  :  ${time.toInt()}",
                 style: TextStyle(color: Colors.white),
               ),
             ),
@@ -73,8 +77,8 @@ class _EMIState extends State<EMI> {
               value: time,
               max: 25,
               divisions: 25,
-              activeColor: Colors.purple,
-              inactiveColor: Colors.purple.shade900,
+              activeColor: Colors.orange.shade900,
+              inactiveColor: Colors.orange.shade300,
               onChanged: (value) {
                 setState(() {
                   time = value;
@@ -85,8 +89,11 @@ class _EMIState extends State<EMI> {
             Center(
               child: InkWell(
                 onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context) => Cal(amount),));
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) => Total(amount , rate , time),));
                   setState(() {
+                    amou.add(amount);
+                    rat.add(rate);
+                    tim.add(time);
                     total = amount * rate * ((1 + rate) * time) / ((1 + rate) * time - 1);
                   });
                 },
@@ -94,12 +101,12 @@ class _EMIState extends State<EMI> {
                   height: 50,
                   width: 100,
                   decoration: BoxDecoration(
-                    color: Colors.purple.shade200,
+                    color: Colors.orange,
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(color: Colors.purple.shade900, width: 2),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.purple.shade100,
+                        color: Colors.orange.shade300,
                         offset: Offset(2, 2),
                         blurRadius: 2,
                       ),
@@ -117,13 +124,40 @@ class _EMIState extends State<EMI> {
                 ),
               ),
             ),
+            SizedBox(height: 50,),
             Container(
               height: 100,
               width: double.infinity,
               color: Colors.orange,
               alignment: Alignment.center,
-              child: Text("$total"),
-            )
+              child: Text("${total.toInt()}"),
+            ),
+            InkWell(
+              onTap: () {
+                setState(() {
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) => Output(double aamount , double rate , double time),));\]\
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Total(amou, rat, tim),));
+                });
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Expanded(
+                  child: Container(
+                    height: 100,
+                    width: 100,
+                    decoration: BoxDecoration(
+                        color: Colors.grey.shade500,
+                        borderRadius: BorderRadius.circular(20)),
+                    alignment: Alignment.center,
+                    child: Icon(
+                      Icons.wallet,
+                      size: 40,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

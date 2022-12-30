@@ -73,24 +73,6 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Expanded(
-                      child: Container(
-                        height: 100,
-                        width: 100,
-                        decoration: BoxDecoration(
-                            color: Colors.grey.shade500,
-                            borderRadius: BorderRadius.circular(20)),
-                        alignment: Alignment.center,
-                        child: Icon(
-                          Icons.wallet,
-                          size: 40,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
                 ],
               ),
             )
